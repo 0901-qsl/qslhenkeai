@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- 这里已改为 default，与 index(1).html 一致 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="你礼礼我呀">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" id="themeColorMeta" content="#ffffff">
-    <!-- 更新了以下两个链接 -->
+    <!-- 图标链接保持您之前要求的 pmosQTs.jpg，未作更改 -->
     <link rel="apple-touch-icon" href="https://s41.ax1x.com/2026/08/05/pmosQTs.jpg">
     <link rel="icon" href="https://s41.ax1x.com/2026/08/05/pmosQTs.jpg">
     <title>你礼礼我呀</title>
@@ -500,7 +501,6 @@
     <style id="customFontStyle"></style>
 </head>
 <body>
-    <!-- 以下 body 内容与原文件保持完全一致，仅更新了 head 中的图标链接 -->
     <div class="app-container" id="appContainer">
         <div class="topbar"><button class="topbar-btn" id="btnSidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="topbar-spacer"></div><div class="topbar-partner-info" id="topbarPartnerInfo"><div class="topbar-partner-avatar-wrap" id="avatarPartnerTop"><svg viewBox="0 0 48 48" fill="currentColor"><circle cx="24" cy="16" r="10" opacity="0.55"/><ellipse cx="24" cy="40" rx="18" ry="12" opacity="0.55"/></svg></div><span class="topbar-partner-nickname" id="partnerNicknameTop">对方</span></div><div class="topbar-spacer"></div><button class="topbar-btn" id="btnSettings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
         <div class="chat-area" id="chatArea"><div class="chat-empty" id="chatEmpty"><div class="chat-empty-inner"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="8" width="36" height="28" rx="4"/><polyline points="8,14 24,26 40,14"/></svg><p>字卡库为空时<br>对方无法回复消息</p><p style="font-size:12px;margin-top:6px;color:#bbb;">点击左上角添加字卡</p></div></div></div>
@@ -826,7 +826,7 @@
             function startRecording() { if (mediaRecorder && mediaRecorder.state !== 'inactive') return; if (currentAudioEl) { currentAudioEl.stop(); currentAudioEl = null; } if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { showToast('当前环境不支持录音'); return; } navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } }).then(stream => { audioChunks = []; const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus' : (MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : 'audio/webm'); mediaRecorder = new MediaRecorder(stream, { mimeType: mimeType, audioBitsPerSecond: 16000 }); mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) audioChunks.push(e.data); }; mediaRecorder.onstop = () => { stream.getTracks().forEach(track => track.stop()); const blob = new Blob(audioChunks, { type: mimeType }); const reader = new FileReader(); reader.onload = (e) => { const audioData = e.target.result; const audioDuration = recordingSeconds; sendMessage(null, null, { type: 'voice', audioData: audioData, audioDuration: audioDuration }); }; reader.readAsDataURL(blob); mediaRecorder = null; stopRecordingTimer(); updateVoiceUI(false); }; mediaRecorder.start(100); recordingStartTime = Date.now(); recordingSeconds = 0; startRecordingTimer(); updateVoiceUI(true); }).catch(() => { showToast('无法访问麦克风'); }); }
             function stopRecording(send = true) { if (!mediaRecorder || mediaRecorder.state === 'inactive') return; if (!send) { mediaRecorder.onstop = () => { if (mediaRecorder && mediaRecorder.stream) { mediaRecorder.stream.getTracks().forEach(track => track.stop()); } mediaRecorder = null; stopRecordingTimer(); updateVoiceUI(false); }; } mediaRecorder.stop(); }
             function cancelRecording() { stopRecording(false); showToast('已取消'); }
-            function startRecordingTimer() { recordingTimer = setInterval(() => { recordingSeconds = Math.floor((Date.now() - recordingStartTime) / 1000); voiceRecordTimer.textContent = formatDuration(recordingSeconds); }, 200); }
+            function startRecordingTimer() { recordingTimer = setInterval(() => { recordingSeconds = Math.floor((Date.now() - recordingStartTime) / 1000); voiceRecordTimer.textContent = formatDuration(recordingSeconds); if (recordingSeconds >= 60) { stopRecording(true); showToast('录音已达60秒上限'); } }, 200); }
             function stopRecordingTimer() { if (recordingTimer) { clearInterval(recordingTimer); recordingTimer = null; } recordingSeconds = 0; voiceRecordTimer.textContent = '00:00'; }
             function updateVoiceUI(recording) { if (recording) { voiceRecordBar.style.display = 'flex'; btnVoice.classList.add('recording'); btnSend.style.display = 'none'; inputMsg.parentElement.style.flex = '0 0 auto'; inputMsg.parentElement.style.width = '0'; inputMsg.parentElement.style.overflow = 'hidden'; } else { voiceRecordBar.style.display = 'none'; btnVoice.classList.remove('recording'); btnSend.style.display = ''; inputMsg.parentElement.style.flex = ''; inputMsg.parentElement.style.width = ''; inputMsg.parentElement.style.overflow = ''; } }
             voiceRecordStop.addEventListener('click', () => stopRecording(true)); voiceRecordCancel.addEventListener('click', cancelRecording);

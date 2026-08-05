@@ -207,7 +207,8 @@
         .voice-record-stop{width:34px;height:34px;border-radius:50%;border:none;background:var(--danger);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(239,68,68,0.3);}
         .voice-record-stop:active{background:var(--danger-hover);transform:scale(0.92);}
         .voice-record-stop svg{width:16px;height:16px;color:#fff;}
-        .bottombar{display:flex;flex-direction:column;gap:0;padding:8px 10px;padding-bottom:calc(10px + var(--safe-bottom));background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;z-index:11;position:relative}
+        /* 修改：去掉了底部栏顶部的灰色边框线 */
+        .bottombar{display:flex;flex-direction:column;gap:0;padding:8px 10px;padding-bottom:calc(10px + var(--safe-bottom));background:var(--surface);border-top:none;flex-shrink:0;z-index:11;position:relative}
         .bottombar-row{display:flex;align-items:flex-end;gap:8px;}
         .bottombar-plus-btn{width:40px;height:40px;border-radius:50%;border:none;background:#f3f3f5;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--transition-fast);outline:none}
         .bottombar-plus-btn:active{background:#e0e0e4;transform:scale(0.92)}.bottombar-plus-btn svg{width:22px;height:22px;color:var(--text-secondary);transition:transform var(--transition-fast)}

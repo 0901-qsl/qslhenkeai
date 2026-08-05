@@ -112,8 +112,9 @@
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
         input,textarea{-webkit-user-select:text;user-select:text}
         html,body{height:100%;width:100%;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',sans-serif;font-size:15px;line-height:1.5;color:var(--text-primary);background:var(--bg);position:fixed;top:0;left:0;right:0;bottom:0}
-        .app-container{display:flex;flex-direction:column;height:100%;height:100dvh;max-width:520px;margin:0 auto;background:var(--bg);position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
-        @media(min-width:521px){.app-container{border-left:1px solid var(--border);border-right:1px solid var(--border)}}
+        /* 修改：主容器背景改为白色基调，移除阴影与边框，实现全屏无留白 */
+        .app-container{display:flex;flex-direction:column;height:100%;height:100dvh;max-width:520px;margin:0 auto;background:var(--surface);position:relative;overflow:hidden;box-shadow:none;}
+        @media(min-width:521px){.app-container{border-left:none;border-right:none;}}
         .topbar{display:flex;align-items:center;justify-content:space-between;height:var(--topbar-height);padding:10px 14px 12px 10px;padding-top:calc(12px + env(safe-area-inset-top, 0px));background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;z-index:10;position:relative;gap:10px}
         .topbar-btn{width:44px;height:44px;border:none;background:transparent;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background var(--transition-fast);flex-shrink:0;outline:none}
         .topbar-btn:active{background:rgba(0,0,0,0.06)}.topbar-btn svg{width:24px;height:24px;color:var(--text-primary)}

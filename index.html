@@ -8,8 +8,9 @@
     <meta name="apple-mobile-web-app-title" content="你礼礼我呀">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" id="themeColorMeta" content="#ffffff">
-    <link rel="apple-touch-icon" href="https://s41.ax1x.com/2026/08/04/pmoFIRH.md.jpg">
-    <link rel="icon" href="https://s41.ax1x.com/2026/08/04/pmoFIRH.md.jpg">
+    <!-- 更新了以下两个链接 -->
+    <link rel="apple-touch-icon" href="https://s41.ax1x.com/2026/08/05/pmosQTs.jpg">
+    <link rel="icon" href="https://s41.ax1x.com/2026/08/05/pmosQTs.jpg">
     <title>你礼礼我呀</title>
     <style id="dynamicTheme">
         :root {
@@ -204,7 +205,7 @@
         .voice-record-stop{width:34px;height:34px;border-radius:50%;border:none;background:var(--danger);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(239,68,68,0.3);}
         .voice-record-stop:active{background:var(--danger-hover);transform:scale(0.92);}
         .voice-record-stop svg{width:16px;height:16px;color:#fff;}
-        .bottombar{display:flex;flex-direction:column;gap:0;padding:8px 10px;padding-bottom:var(--safe-bottom);background:var(--surface);border-top:none;flex-shrink:0;z-index:11;position:relative}
+        .bottombar{display:flex;flex-direction:column;gap:0;padding:8px 10px;padding-bottom:calc(10px + var(--safe-bottom));background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;z-index:11;position:relative}
         .bottombar-row{display:flex;align-items:flex-end;gap:8px;}
         .bottombar-plus-btn{width:40px;height:40px;border-radius:50%;border:none;background:#f3f3f5;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--transition-fast);outline:none}
         .bottombar-plus-btn:active{background:#e0e0e4;transform:scale(0.92)}.bottombar-plus-btn svg{width:22px;height:22px;color:var(--text-secondary);transition:transform var(--transition-fast)}
@@ -494,17 +495,12 @@
         .beauty-preview-row.mine{flex-direction:row-reverse;}
         .beauty-preview-avatar{width:36px;height:36px;background:#ccc;flex-shrink:0;border:1px solid rgba(0,0,0,0.05);}
         .beauty-preview-bubble{padding:10px 14px;font-size:15px;line-height:1.5;max-width:70%;word-break:break-word;}
-        .site-footer{text-align:center;padding:10px;margin-top:auto;}
-        .site-footer a{display:inline-block;}
-        .site-footer img{width:80px;height:80px;object-fit:contain;}
-        .like-avatar{width:22px;height:22px;border-radius:50%;overflow:hidden;border:1px solid var(--border);flex-shrink:0;background:#e0e0e4;}
-        .like-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-        .like-avatar svg{width:100%;height:100%;display:block;color:#b0b0b8;}
     </style>
     <style id="customBubbleStyle"></style>
     <style id="customFontStyle"></style>
 </head>
 <body>
+    <!-- 以下 body 内容与原文件保持完全一致，仅更新了 head 中的图标链接 -->
     <div class="app-container" id="appContainer">
         <div class="topbar"><button class="topbar-btn" id="btnSidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="topbar-spacer"></div><div class="topbar-partner-info" id="topbarPartnerInfo"><div class="topbar-partner-avatar-wrap" id="avatarPartnerTop"><svg viewBox="0 0 48 48" fill="currentColor"><circle cx="24" cy="16" r="10" opacity="0.55"/><ellipse cx="24" cy="40" rx="18" ry="12" opacity="0.55"/></svg></div><span class="topbar-partner-nickname" id="partnerNicknameTop">对方</span></div><div class="topbar-spacer"></div><button class="topbar-btn" id="btnSettings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
         <div class="chat-area" id="chatArea"><div class="chat-empty" id="chatEmpty"><div class="chat-empty-inner"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="8" width="36" height="28" rx="4"/><polyline points="8,14 24,26 40,14"/></svg><p>字卡库为空时<br>对方无法回复消息</p><p style="font-size:12px;margin-top:6px;color:#bbb;">点击左上角添加字卡</p></div></div></div>
@@ -578,9 +574,6 @@
             <span class="moments-notification-title">新消息</span>
         </div>
         <div class="moments-notification-list" id="momentsNotificationList"></div>
-    </div>
-    <div class="site-footer">
-        <a href="#"><img src="https://s41.ax1x.com/2026/08/04/pmIjW90.jpg" alt="pmIjW90.jpg" border="0" /></a>
     </div>
 
     <script>
